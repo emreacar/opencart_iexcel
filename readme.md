@@ -25,6 +25,12 @@ When you download files, you will find "excel_import.ocmod.zip" file.
 * Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
 
+## Some Tricks
+
+* If used category names not saved before to opencart, excel importer will add categories automatically,
+* If product option's and option values not saved before to opencart, excel importer will create options and values automatically,
+* System set seo url automatically based on product name
+* you can manage all settings from settings panel, take a look screenshots.
 
 ## USAGE
 
