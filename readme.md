@@ -41,13 +41,11 @@ You can use only one row for a product, so if you want to set product's category
 
 **EX. product info with product categories**
 
----
-ROW A : Product Model
-ROW B : Product Name
-ROW C : Main Category Name
-ROW D : Sub Category Name
-ROW E : Sub Category Name
----
+
+| COLUMB A | COLUMB B | COLUMB C | COLUMB D |
+|----------|----------|----------|----------|
+|Product Model | Product Name | Main Category Name | Sub Cat. Name | Sub Cat. 2 Name |
+
 
 In this example our products goes to; **Main Category -> Sub Category -> Sub Category**, but if you whant to **set multiple main category** take a look example above.
 
@@ -56,7 +54,6 @@ In this example our products goes to; **Main Category -> Sub Category -> Sub Cat
 | COLUMB A | COLUMB B | COLUMB C | COLUMB D |
 |----------|----------|----------|----------|
 |Product Name | Main Cat\|Main Cat 2 | Sub Cat 1\|Sub Cat 2 | Sub Cat 1,2\|Sub Cat 2,2|
-|----------|----------|----------|----------|
 
 
 In this example our product goes to; **Main Cat -> Sub Cat 1 -> Sub Cat 1,2** and **Main Cat 2 -> Sub Cat 2 -> Sub Cat 2,2** categories.
@@ -77,7 +74,6 @@ For add an option to product, you should add new row for product option. If anot
 | Model001 |  OPTION NAME\|OPTION VALUE NAME | +50.00   | 5 |
 |----------|----------|----------|----------|
 | Model001 | OPTION NAME\|OPTION VALUE 2 NAME  | +50.00   | 5 |
-|----------|----------|----------|----------|
 
 
 If you want to add more options you can add more row What has to same model number.
