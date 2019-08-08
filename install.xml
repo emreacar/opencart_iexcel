@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <modification>
+    <code>iexcelv01</code>
     <name>Excel Import</name>
     <version>0.1</version>
     <author>Emre Acar</author>
@@ -12,10 +13,21 @@
             <add position="before"><![CDATA[
             $catalog[] = array(
 				'name'	   => $this->language->get('text_iexcel'),
-				'href'     => $this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true),
-				'children' => array()		
+				'href'     => $this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true),
+				'children' => array()
 			);
             ]]></add>
         </operation>
-    </file>  
+    </file> 
+
+    <file path="admin/controller/startup/permission.php">
+        <operation>
+            <search><![CDATA[
+            'extension/extension',
+            ]]></search>
+            <add position="after"><![CDATA[
+            'extension/import',
+            ]]></add>
+        </operation>
+    </file>
 </modification>

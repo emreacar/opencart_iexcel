@@ -1,7 +1,7 @@
 <?php
-class ControllerCatalogExcel extends Controller {
+class ControllerExtensionImportExcel extends Controller {
     public function index() {
-        $this->load->language('catalog/excel');
+        $this->load->language('extension/excel/excel');
 
         $this->document->setTitle($this->language->get('heading_title'));
         
@@ -14,7 +14,7 @@ class ControllerCatalogExcel extends Controller {
 	}
 	
 	public function upload() {
-		$this->load->language('catalog/excel');
+		$this->load->language('extension/extension/excel');
 		if (!empty($this->request->files['excel_file']['name']) && is_file($this->request->files['excel_file']['tmp_name'])) {
 			$import_file = html_entity_decode($this->request->files['excel_file']['name'], ENT_QUOTES, 'UTF-8');
 			if( !file_exists(DIR_UPLOAD.'/excel_import') ) mkdir(DIR_UPLOAD.'/excel_import');
@@ -23,7 +23,7 @@ class ControllerCatalogExcel extends Controller {
 			unset($this->session->data['upload-logs']);
 
 			if( move_uploaded_file($this->request->files['excel_file']['tmp_name'], DIR_UPLOAD . $import_file) ) {
-				$this->response->redirect($this->url->link('catalog/excel/import', 'filename='.$import_file.'&current=1&user_token=' . $this->session->data['user_token'], TRUE));
+				$this->response->redirect($this->url->link('extension/import/excel/import', 'filename='.$import_file.'&current=1&user_token=' . $this->session->data['user_token'], TRUE));
 			}else{
 				$this->session->data['error'] = $this->language->get('error_upload');
 			}
@@ -31,12 +31,12 @@ class ControllerCatalogExcel extends Controller {
 			$this->session->data['error'] = $this->language->get('error_no_file');
 		}
 
-		$this->response->redirect($this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true));
+		$this->response->redirect($this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true));
 	}
 
 	public function import() {
-		$this->load->language('catalog/excel');
-		$this->load->model('catalog/excel');
+		$this->load->language('extension/excel/excel');
+		$this->load->model('extension/excel');
 		
 		$current = (int) $this->request->get['current'];
 		$import_file= $this->request->get['filename'];
@@ -44,15 +44,18 @@ class ControllerCatalogExcel extends Controller {
 
 		$this->session->data['import-logs'][] = $current;
 
-		$import_status = $this->model_catalog_excel->import($import_file, $current);
+		$import_status = $this->model_extension_excel->import($import_file, $current);
 
+		$link = $this->url->link('extension/import/excel', '&user_token=' . $this->session->data['user_token'], true);
 		if($import_status['total'] == $import_status['current']) {
 			$this->session->data['success'] = $this->language->get('import_success');
 		}else{
-			$this->response->redirect($this->url->link('catalog/excel/import', 'filename='.$import_file.'&current='.$import_status['current'].'&user_token=' . $this->session->data['user_token'], TRUE));
+			$link = $this->url->link('extension/import/excel/import', ['filename'=> $import_file, 'current' => $import_status['current'], 'user_token'=>$this->session->data['user_token']], TRUE);
 		}
 
-		$this->response->redirect($this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true));
+		
+		echo 'Please Wait...';
+		echo '<script>window.location="'.$link.'";</script>';
 	}
 
     protected function getForm() {
@@ -65,12 +68,12 @@ class ControllerCatalogExcel extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true)
+			'href' => $this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['cancel'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true);
-		$data['action'] = $this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true);
-		$data['upload_action'] = $this->url->link('catalog/excel/upload', 'user_token=' . $this->session->data['user_token'], true);
+		$data['action'] = $this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true);
+		$data['upload_action'] = $this->url->link('extension/import/excel/upload', 'user_token=' . $this->session->data['user_token'], true);
         
         $temp_rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $rows = $temp_rows;
@@ -138,6 +141,6 @@ class ControllerCatalogExcel extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 
 
-        $this->response->setOutput($this->load->view('catalog/excel', $data));
+        $this->response->setOutput($this->load->view('extension/extension/excel', $data));
     }
 }

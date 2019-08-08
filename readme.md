@@ -7,22 +7,25 @@
 When you download files, you will find "excel_import.ocmod.zip" file.
 
 * Login you administration panel,
-* Go to **Extentions -> Installer**
+* Go to **Extensions -> Installer**
 * Select "excel_import.ocmod.zip" file and upload.
+* Go to **Extensions -> Modifications** click refresh button
 * After installing module go to **System -> Users -> User Groups -> Edit User Group**
-* Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
+* Find "extension/import/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
+
+**Note : After you set permissions for user group, re-login for get acces extension settings**
 
 **Standart Ftp Uploading**
 
 **NOTE :** If you don't use oc_mod install method, you should add a link manually to navigation for access to module. Because there is no modification for edit menu items.
 
-**Link :** index.php?route=catalog/excel&user_token=*******
+**Link :** index.php?route=extension/import/excel&user_token=*******
 
 * Download file from repository
 * Find "upload" folder and upload inside files to your opencart root dir.
 * After upload files, go to **System -> Users -> User Groups -> Edit User Group**
-* Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
+* Find "extensiton/import/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
 
 

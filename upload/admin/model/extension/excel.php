@@ -1,4 +1,4 @@
-<?php class ModelCatalogExcel extends Model {
+<?php class ModelExtensionExcel extends Model {
     public $defaultLang;
     public $stores = [];
     public function import($filename, $row_order = 1) {
@@ -165,7 +165,7 @@
                 if($discount != "00") {
                     $product_discount[] = [
                         'customer_group_id' => $customer_group,
-                        'quantity'          => (int) $option[$config['eimport_qty']],
+                        'quantity'          => (int) $import_data[$model][$config['eimport_qty']],
                         'priority'          => '0',
                         'price'             => $import_data[$model][$discount],
                         'date_start'        => date("Y-m-d"),
@@ -368,7 +368,7 @@
             ];
             $product_id = $this->isProductSaved($model);
             if($product_id == 0) $this->saveProduct($product);
-            elseif($config['eimport_update_exist'] == '1') $this->updateProduct($product, $product_id);
+            elseif(isset($config['eimport_update_exist']) && '1' == $config['eimport_update_exist']) $this->updateProduct($product, $product_id);
 
 
             if($current == $limit) break;
