@@ -52,13 +52,12 @@ ROW E : Sub Category Name
 In this example our products goes to; **Main Category -> Sub Category -> Sub Category**, but if you whant to **set multiple main category** take a look example above.
 
 
----
-ROW_A : Product Model
-ROW_B : Product Name
-ROW_C : Main Cat|Main Cat 2
-ROW_D : Sub Cat 1|Sub Cat 2
-ROW_E : Sub Cat 1,2|Sub Cat 2,2
----
+
+| COLUMB A | COLUMB B | COLUMB C | COLUMB D |
+|----------|----------|----------|----------|
+|Product Name | Main Cat\|Main Cat 2 | Sub Cat 1\|Sub Cat 2 | Sub Cat 1,2\|Sub Cat 2,2|
+|----------|----------|----------|----------|
+
 
 In this example our product goes to; **Main Cat -> Sub Cat 1 -> Sub Cat 1,2** and **Main Cat 2 -> Sub Cat 2 -> Sub Cat 2,2** categories.
 
@@ -70,12 +69,16 @@ Sortly for multiple category you can **use sperator** " | " between category nam
 For add an option to product, you should add new row for product option. If another row has same product model, system get this row as product option.
 
 **Example for product option**
----
-ROW_A (Product Model) : MODEL0001 : MODEL0001
-ROW_B : Product Name : OPTION NAME|OPTION VALUE NAME
-ROW_C : 127.00 : +50.00
-ROW_D : 10 : 10
----
+
+| COLUMB A | COLUMB B | COLUMB C | COLUMB D |
+|----------|----------|----------|----------|
+| Model001 | Prod. Name | 127.00 | 10       |
+|----------|----------|----------|----------|
+| Model001 |  OPTION NAME\|OPTION VALUE NAME | +50.00   | 5 |
+|----------|----------|----------|----------|
+| Model001 | OPTION NAME\|OPTION VALUE 2 NAME  | +50.00   | 5 |
+|----------|----------|----------|----------|
+
 
 If you want to add more options you can add more row What has to same model number.
 
