@@ -20,10 +20,9 @@ class ControllerExtensionImportExcel extends Controller {
 			if( !file_exists(DIR_UPLOAD.'/excel_import') ) mkdir(DIR_UPLOAD.'/excel_import');
 			$import_file = 'excel_import/'.$import_file;
 			
-			unset($this->session->data['upload-logs']);
-
+			$link = $this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true);
 			if( move_uploaded_file($this->request->files['excel_file']['tmp_name'], DIR_UPLOAD . $import_file) ) {
-				$this->response->redirect($this->url->link('extension/import/excel/import', 'filename='.$import_file.'&current=1&user_token=' . $this->session->data['user_token'], TRUE));
+				$link = $this->url->link('extension/import/excel/import', ['filename' => $import_file, 'current' => 1, 'user_token' => $this->session->data['user_token']], TRUE);
 			}else{
 				$this->session->data['error'] = $this->language->get('error_upload');
 			}
@@ -31,7 +30,8 @@ class ControllerExtensionImportExcel extends Controller {
 			$this->session->data['error'] = $this->language->get('error_no_file');
 		}
 
-		$this->response->redirect($this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true));
+		echo 'Please wait until redirect';
+		echo "<script>window.location='{$link}'</script>";
 	}
 
 	public function import() {
@@ -46,11 +46,11 @@ class ControllerExtensionImportExcel extends Controller {
 
 		$import_status = $this->model_extension_excel->import($import_file, $current);
 
-		$link = $this->url->link('extension/import/excel', '&user_token=' . $this->session->data['user_token'], true);
+		$link = $this->url->link('extension/import/excel', 'user_token=' . $this->session->data['user_token'], true);
 		if($import_status['total'] == $import_status['current']) {
 			$this->session->data['success'] = $this->language->get('import_success');
 		}else{
-			$link = $this->url->link('extension/import/excel/import', ['filename'=> $import_file, 'current' => $import_status['current'], 'user_token'=>$this->session->data['user_token']], TRUE);
+			$link = $this->url->link('extension/import/excel/import', ['filename'=> $import_file, 'current' => $import_status['current'], 'user_token' => $this->session->data['user_token']], TRUE);
 		}
 
 		
