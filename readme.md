@@ -32,6 +32,17 @@ When you download files, you will find "excel_import.ocmod.zip" file.
 * System set seo url automatically based on product name
 * you can manage all settings from settings panel, take a look screenshots.
 
+![SCREENSHOTS](https://emreacar.com.tr/sources/2.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/5.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/1.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/4.png)
+
+
+
+
 ## USAGE
 
 * First we must set some settings before upload an excel file,
