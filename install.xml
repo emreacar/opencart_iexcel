@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Excel Import</name>
+    <version>0.1</version>
+    <author>Emre Acar</author>
+    <link>https://www.emreacar.com.tr</link>
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search><![CDATA[
+            if ($this->user->hasPermission('access', 'catalog/recurring')) {
+            ]]></search>
+            <add position="before"><![CDATA[
+            $catalog[] = array(
+				'name'	   => $this->language->get('text_iexcel'),
+				'href'     => $this->url->link('catalog/excel', 'user_token=' . $this->session->data['user_token'], true),
+				'children' => array()		
+			);
+            ]]></add>
+        </operation>
+    </file>  
+</modification>
