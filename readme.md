@@ -7,26 +7,40 @@
 When you download files, you will find "excel_import.ocmod.zip" file.
 
 * Login you administration panel,
-* Go to **Extensions -> Installer**
+* Go to **Extentions -> Installer**
 * Select "excel_import.ocmod.zip" file and upload.
-* Go to **Extensions -> Modifications** click refresh button
 * After installing module go to **System -> Users -> User Groups -> Edit User Group**
-* Find "extension/import/excel" both Access Permisison and Modify Permisison lists and check it.
+* Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
-
-**Note : After you set permissions for user group, re-login for get acces extension settings**
 
 **Standart Ftp Uploading**
 
 **NOTE :** If you don't use oc_mod install method, you should add a link manually to navigation for access to module. Because there is no modification for edit menu items.
 
-**Link :** index.php?route=extension/import/excel&user_token=*******
+**Link :** index.php?route=catalog/excel&user_token=*******
 
 * Download file from repository
 * Find "upload" folder and upload inside files to your opencart root dir.
 * After upload files, go to **System -> Users -> User Groups -> Edit User Group**
-* Find "extensiton/import/excel" both Access Permisison and Modify Permisison lists and check it.
+* Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
+
+## Some Tricks
+
+* If used category names not saved before to opencart, excel importer will add categories automatically,
+* If product option's and option values not saved before to opencart, excel importer will create options and values automatically,
+* System set seo url automatically based on product name
+* you can manage all settings from settings panel, take a look screenshots.
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/2.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/5.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/1.png)
+
+![SCREENSHOTS](https://emreacar.com.tr/sources/4.png)
+
+
 
 
 ## USAGE
@@ -85,11 +99,3 @@ If you want to add more options you can add more row What has to same model numb
 * You should use same price columb for options price info.
 * If you want to " - " prefix for price, you can set price columb "-50.00"
 * Dont use curreny sym in price columbs.
-
-
-
-
-
-
-
-

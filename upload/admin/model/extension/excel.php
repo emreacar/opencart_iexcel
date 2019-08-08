@@ -55,7 +55,7 @@
         $stop      = count($import_data);
         $import_keys = array_keys($import_data);
         $current   = 1;
-        $limit     = 1;
+        $limit     = 50;
 
         for($i = $start; $i<$stop; $i++) {
             $model = $import_keys[$i];
