@@ -1,27 +1,27 @@
 # Basic Excel Import For OpenCart v3.0
 
-##INSTALLING
+## INSTALLING
 
-** OC MOD INSTALLING **
+**OC MOD INSTALLING**
 
 When you download files, you will find "excel_import.ocmod.zip" file.
 
 * Login you administration panel,
 * Go to **Extentions -> Installer**
 * Select "excel_import.ocmod.zip" file and upload.
-* After installing module go to ** System -> Users -> User Groups -> Edit User Group **
+* After installing module go to **System -> Users -> User Groups -> Edit User Group**
 * Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
 
-** Standart Ftp Uploading **
+**Standart Ftp Uploading**
 
-** NOTE : ** If you don't use oc_mod install method, you should add a link manually to navigation for access to module. Because there is no modification for edit menu items.
+**NOTE :** If you don't use oc_mod install method, you should add a link manually to navigation for access to module. Because there is no modification for edit menu items.
 
-** Link : ** route=catalog/excel
+**Link :** index.php?route=catalog/excel&user_token=*******
 
 * Download file from repository
 * Find "upload" folder and upload inside files to your opencart root dir.
-* After upload files, go to ** System -> Users -> User Groups -> Edit User Group **
+* After upload files, go to **System -> Users -> User Groups -> Edit User Group**
 * Find "catalog/excel" both Access Permisison and Modify Permisison lists and check it.
 * It's Done !
 
@@ -35,11 +35,11 @@ When you download files, you will find "excel_import.ocmod.zip" file.
 
 ## USAGE NOTES
 
-** CATEGORIES **
+**CATEGORIES**
 
 You can use only one row for a product, so if you want to set product's category information from excel read above.
 
-** EX. product info with product categories **
+**EX. product info with product categories**
 
 ---
 ROW A : Product Model
@@ -49,31 +49,32 @@ ROW D : Sub Category Name
 ROW E : Sub Category Name
 ---
 
-In this example our products goes to; Main Category -> Sub Category -> Sub Category, but if you whant to set multiple main category take a look example above.
+In this example our products goes to; **Main Category -> Sub Category -> Sub Category**, but if you whant to **set multiple main category** take a look example above.
+
 
 ---
-ROW A : Product Model
-ROW B : Product Name
-ROW C : Main Cat|Main Cat 2
-ROW D : Sub Cat 1|Sub Cat 2
-ROW E : Sub Cat 1,2|Sub Cat 2,2
+ROW_A : Product Model
+ROW_B : Product Name
+ROW_C : Main Cat|Main Cat 2
+ROW_D : Sub Cat 1|Sub Cat 2
+ROW_E : Sub Cat 1,2|Sub Cat 2,2
 ---
 
-In this example our product goes to; Main Cat -> Sub Cat 1 -> Sub Cat 1,2 and Main Cat 2 -> Sub Cat 2 -> Sub Cat 2,2 categories.
+In this example our product goes to; **Main Cat -> Sub Cat 1 -> Sub Cat 1,2** and **Main Cat 2 -> Sub Cat 2 -> Sub Cat 2,2** categories.
 
-Sortly for multiple category you can use sperator " | " between category names.
+Sortly for multiple category you can **use sperator** " | " between category names.
 
 
-** Product Options **
+**Product Options**
 
 For add an option to product, you should add new row for product option. If another row has same product model, system get this row as product option.
 
-** Example for product option **
+**Example for product option**
 ---
-ROW A (Product Model) : MODEL0001 : MODEL0001
-ROW B : Product Name : OPTION NAME|OPTION VALUE NAME
-ROW C : 127.00 : +50.00
-ROW D : 10 : 10
+ROW_A (Product Model) : MODEL0001 : MODEL0001
+ROW_B : Product Name : OPTION NAME|OPTION VALUE NAME
+ROW_C : 127.00 : +50.00
+ROW_D : 10 : 10
 ---
 
 If you want to add more options you can add more row What has to same model number.
