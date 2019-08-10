@@ -385,10 +385,34 @@
                 'product_category'  => $product_categories,
                 'product_seo_url'   => $seo_url
             ];
-            $product_id = $this->isProductSaved($model);
-            if($product_id == 0) $this->saveProduct($product);
-            elseif(isset($config['eimport_update_exist']) && '1' == $config['eimport_update_exist']) $this->updateProduct($product, $product_id);
 
+
+            /** product external fields */
+            $external_names = isset($config['eimport_external_names']) ? $config['eimport_external_names'] : [];
+            $external_rows = isset($config['eimport_external_rows']) ? $config['eimport_external_rows'] : [];
+
+            if(!empty($external_names)) {
+
+                forEach($external_names as $ek => $en) {
+                    if($external_rows[$ek] != "00") {
+                        $row_value = $import_data[$model][$external_rows[$ek]];
+                        $product[$en] = $row_value;
+                    }
+                }
+            }
+
+            /** product external fields */
+
+
+
+            $product_id = $this->isProductSaved($model);
+            if($product_id == 0) $product_id = $this->saveProduct($product);
+            elseif(isset($config['eimport_update_exist']) && '1' == $config['eimport_update_exist']) $product_id = $this->updateProduct($product, $product_id);
+
+
+            if($product_id == 0) {
+                $this->session->data['error'][] = $model.' '.$this->language->get('err_product');
+            }
 
             if($current == $limit) break;
             $current++;

@@ -60,5 +60,7 @@ $_['text_tab_external']  = 'Ekstra Sutun';
 $_['text_remove']        = 'Sil';
 $_['text_db_col']        = 'V.T Sutun Adı';
 $_['text_db_row']        = 'Excel Sutunu';
+$_['err_product']        = 'Ürün Eklenemedi';
+
 
 ?>

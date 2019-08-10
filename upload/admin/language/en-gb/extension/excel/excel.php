@@ -60,4 +60,5 @@ $_['text_tab_external']  = 'External';
 $_['text_remove']        = 'Remove';
 $_['text_db_col']        = 'DB Column Name';
 $_['text_db_row']        = 'Excel Row';
+$_['err_product']        = 'Product Save Error';
 ?>
