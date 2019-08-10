@@ -189,7 +189,7 @@
             if(!empty($import_data[$model]['options'])) {
                 
                 forEach($import_data[$model]['options'] as $option) {
-                    $options     = explode('|', trim($option[$name_row]));
+                    $options = explode('|', trim($option[$name_row]));
                     
                     $option_name       = $options[0];
                     $option_value_name = isset($options[1]) ? $options[1] : '';

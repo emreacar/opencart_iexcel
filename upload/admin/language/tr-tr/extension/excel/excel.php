@@ -52,5 +52,9 @@ $_['error_upload']       = 'Dosya Yüklenemedi !';
 $_['import_success']     = 'Ürünler başarıyla eklendi.';
 $_['ierr_no_model']      = 'Ürüne ait model kodu yok.';
 $_['form_update_exist']  = 'EKli olan ürünleri güncelle';
+$_['form_seo_metod']     = 'Seo Metodu';
+$_['text_seo_auto']      = 'Otomatik Oluştur';
+$_['text_seo_row']       = 'Excel Kullan';
+$_['form_seo_source']    = 'Seo Excel Kaynağı';
 
 ?>
