@@ -405,7 +405,8 @@
                 $this->stores[0] => [
                     $this->defaultLang => $this->createSeo($mc)
                 ]
-            ]
+            ],
+            'category_store' => $this->stores
         ];
 
         $category_id = $this->model_catalog_category->addCategory($category_data);
