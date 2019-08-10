@@ -463,13 +463,15 @@
     private function getProductImages($model) {
         $images = [];
 
-        $find   = glob(DIR_IMAGE."original/$model*");
+        $find   = glob(DIR_IMAGE."*/$model*");
 
         foreach($find as $sort_order => $image) {
-            $images[] = [
-                'image'      => str_replace(DIR_IMAGE, '', $image),
-                'sort_order' => $sort_order
-            ];
+            if( !is_dir($image) ) {
+                $images[] = [
+                    'image'      => str_replace(DIR_IMAGE, '', $image),
+                    'sort_order' => $sort_order
+                ];
+            }
         }
 
         return $images;
