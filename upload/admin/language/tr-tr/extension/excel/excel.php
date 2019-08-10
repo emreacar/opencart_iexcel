@@ -57,6 +57,7 @@ $_['text_seo_auto']      = 'Otomatik Oluştur';
 $_['text_seo_row']       = 'Excel Kullan';
 $_['form_seo_source']    = 'Seo Excel Kaynağı';
 $_['text_tab_external']  = 'Ekstra Sutun';
+$_['text_add']           = 'Alan Ekle';
 $_['text_remove']        = 'Sil';
 $_['text_db_col']        = 'V.T Sutun Adı';
 $_['text_db_row']        = 'Excel Sutunu';

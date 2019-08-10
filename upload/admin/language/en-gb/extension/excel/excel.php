@@ -57,6 +57,7 @@ $_['text_seo_auto']      = 'Auto Create';
 $_['text_seo_row']       = 'Use Source';
 $_['form_seo_source']    = 'Seo Row';
 $_['text_tab_external']  = 'External';
+$_['text_add']           = 'Add Field';
 $_['text_remove']        = 'Remove';
 $_['text_db_col']        = 'DB Column Name';
 $_['text_db_row']        = 'Excel Row';
