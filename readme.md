@@ -1,5 +1,13 @@
 # Basic Excel Import For OpenCart v3.0
 
+
+## CHANGES
+
+* Added Database External Column Support
+* Added Seo Metod Support
+* Changed Image lookup metod
+* Fixed some bugs
+
 ## INSTALLING
 
 **OC MOD INSTALLING**
