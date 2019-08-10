@@ -20,9 +20,9 @@ class ControllerExtensionImportExcel extends Controller {
 			if( !file_exists(DIR_UPLOAD.'/excel_import') ) mkdir(DIR_UPLOAD.'/excel_import');
 			$import_file = 'excel_import/'.$import_file;
 			
-			$link = 'user_token=' . $this->session->data['user_token'];
+			$link = $this->url->link('extension/import/excel', '', TRUE).'&user_token=' . $this->session->data['user_token'];
 			if( move_uploaded_file($this->request->files['excel_file']['tmp_name'], DIR_UPLOAD . $import_file) ) {
-				$link = 'filename='. $import_file .'&current=1&user_token='.$this->session->data['user_token'];
+				$link = $this->url->link('extension/import/excel/import', '', TRUE).'&filename='. $import_file .'&current=0&user_token='.$this->session->data['user_token'];
 			}else{
 				$this->session->data['error'] = $this->language->get('error_upload');
 			}
@@ -30,8 +30,7 @@ class ControllerExtensionImportExcel extends Controller {
 			$this->session->data['error'] = $this->language->get('error_no_file');
 		}
 
-		$link = $this->url->link('extension/import/excel', '', TRUE).'&'.$link;
-		echo 'Please wait until redirect';
+		echo 'Please wait until <a href="'.$link.'">redirect</a>';
 		echo "<script>window.location='{$link}'</script>";
 	}
 
@@ -39,24 +38,23 @@ class ControllerExtensionImportExcel extends Controller {
 		$this->load->language('extension/excel/excel');
 		$this->load->model('extension/excel');
 		
-		$current = (int) $this->request->get['current'];
+		$page = (int) $this->request->get['page'];
 		$import_file= $this->request->get['filename'];
 
-
-		$this->session->data['import-logs'][] = $current;
-
-		$import_status = $this->model_extension_excel->import($import_file, $current);
+		$import_status = $this->model_extension_excel->import($import_file, $page);
+		
+		if(!empty($import_status['logs'])) $this->session->data['error'][] = $import_status['logs'];
 
 		$link = 'user_token=' . $this->session->data['user_token'];
-		if($import_status['total'] == $import_status['current']) {
+		if($import_status['total'] == $import_status['page']) {
 			$this->session->data['success'] = $this->language->get('import_success');
 		}else{
-			$link = 'filename='. $import_file .'&current='. $import_status['current'] .'&user_token='.$this->session->data['user_token'];
+			$link = 'filename='.$import_file.'&page='.$import_status['page'].'&user_token='.$this->session->data['user_token'];
 		}
 
-		$link = $this->url->link('extension/import/excel', '', TRUE).'&'.$link;
+		$link = $this->url->link('extension/import/excel/import', '', TRUE).'&'.$link;
 
-		echo 'Please Wait until redirect to next step';
+		echo 'Please Wait until redirect to <a href="'.$link.'">next step</a>';
 		echo '<script>window.location="'.$link.'";</script>';
 	}
 

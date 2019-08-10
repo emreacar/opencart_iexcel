@@ -1,7 +1,7 @@
 <?php class ModelExtensionExcel extends Model {
     public $defaultLang;
     public $stores = [];
-    public function import($filename, $row_order = 1) {
+    public function import($filename, $row_order = 0) {
         $this->load->language('catalog/excel');
         $filename = DIR_UPLOAD.$filename;
         require_once DIR_SYSTEM.'library/PHPExcel/Classes/PHPExcel.php';
@@ -30,6 +30,11 @@
 			$this->stores[] = $store['store_id'];
 		}
 
+
+        $status = [
+            'total' => 0, 'page' => 0, 'logs' => []
+        ];
+
         /** get products option rows in some array */
         $import_data = [];
         $imported_data = [];
@@ -42,7 +47,7 @@
             }elseif( "" != trim($model) ) {
                 $import_data[$model]['options'][] = $iv;
             }else{
-                $this->session->data['error'][] = $ik.$this->language->get('ierr_no_model');
+                $status['logs'][] = $ik.$this->language->get('ierr_no_model');
             }
         }
         /** get products option rows in some array */
@@ -54,8 +59,11 @@
         $start     = $row_order;
         $stop      = count($import_data);
         $import_keys = array_keys($import_data);
-        $current   = 1;
+        $current   = 0;
         $limit     = 50;
+        
+        $status['total'] = $stop;
+
 
         for($i = $start; $i<$stop; $i++) {
             $model = $import_keys[$i];
@@ -357,20 +365,20 @@
                 'isbn'  => '',
                 'mpn'   => '',
                 'location' => '',
-                'quantity' => $import_data[$model][$config['eimport_qty']],
+                'quantity' => $config['eimport_qty'] != "00" ? $import_data[$model][$config['eimport_qty']] : '0',
                 'minimum'  => '1',
                 'subtract' => '1',
                 'stock_status_id' => $config['eimport_stockStatus'],
                 'date_available'  => date("Y-m-d"),
                 'manufacturer_id' => 0,
                 'shipping' => $config['eimport_reqShipping'],
-                'price'    => $import_data[$model][$config['eimport_price']],
+                'price'    => $config['eimport_price'] != "00" ? $import_data[$model][$config['eimport_price']] : '0',
                 'points'   => 0,
-                'weight'   => $import_data[$model][$config['eimport_weight']],
+                'weight'   => $config['eimport_weight'] != "00" ? $import_data[$model][$config['eimport_weight']] : '',
                 'weight_class_id' => $config['eimport_weight_class'],
-                'length'  => $import_data[$model][$config['eimport_dimentionL']],
-                'width'   => $import_data[$model][$config['eimport_dimentionW']],
-                'height'  => $import_data[$model][$config['eimport_dimentionH']],
+                'length'  => $config['eimport_dimentionL'] != "00" ? $import_data[$model][$config['eimport_dimentionL']] : '',
+                'width'   => $config['eimport_dimentionW'] != "00" ? $import_data[$model][$config['eimport_dimentionW']] : '',
+                'height'  => $config['eimport_dimentionH'] != "00" ? $import_data[$model][$config['eimport_dimentionH']] : '',
                 'length_class_id'  => $config['eimport_lenght_class'],
                 'status'  => '1',
                 'tax_class_id' => $config['eimport_taxClass'],
@@ -406,23 +414,24 @@
 
 
             $product_id = $this->isProductSaved($model);
+
             if($product_id == 0) $product_id = $this->saveProduct($product);
             elseif(isset($config['eimport_update_exist']) && '1' == $config['eimport_update_exist']) $product_id = $this->updateProduct($product, $product_id);
-
-
-            if($product_id == 0) {
-                $this->session->data['error'][] = $model.' '.$this->language->get('err_product');
+            else {
+                $status['logs'][] = $model.' yükle / güncelle seçeneği yok';
             }
 
-            if($current == $limit) break;
+            if($product_id == 0) {
+                $status['logs'][] = $model.' '.$this->language->get('err_product');
+            }
+
             $current++;
+            if($current == $limit) break;
+            
         }
 
-        $status = [
-            'total' => $stop, 'current' => $i
-        ];
+        $status['page'] = $i;
         
-
         return $status;
     }
 
@@ -543,7 +552,7 @@
             }
         }
 
-        $product_id = $this->model_catalog_product->editProduct($product_id, $product);
+        $this->model_catalog_product->editProduct($product_id, $product);
 
         return $product_id;
     }
