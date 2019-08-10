@@ -41,6 +41,7 @@
                 <li role="presentation"><a href="#desc" aria-controls="desc" role="tab" data-toggle="tab">{{text_tab_adesc}}</a></li>
                 <li role="presentation"><a href="#prices" aria-controls="prices" role="tab" data-toggle="tab">{{text_prices}}</a></li>
                 <li role="presentation"><a href="#other" aria-controls="other" role="tab" data-toggle="tab">{{text_tab_other}}</a></li>
+                <li role="presentation"><a href="#external" aria-controls="external" role="tab" data-toggle="tab">{{text_tab_external}}</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -424,6 +425,32 @@
                     </div>
 
                 </div>
+
+                <div role="tabpanel" class="tab-pane" id="external">
+
+                    <div class="row" id="external-storage">
+                        <div class="col-xs-12"><button type="button" class="btn btn-addRow btn-sm btn-warning">{{text_add}}</button></div>
+                        
+                        {% for ek, en in  excel_data.eimport_external_names %}
+                        <div class="col-xs-12 col-md-4 external_input"><a onclick="$(this).parent().remove(); return false;">{{text_remove}}</a>
+     
+                            <div class="form-group"><label>{{text_db_col}}</label><input type="text" name="eimport_external_names[]" value="{{en}}" class="form-control form-control-sm" /></div>
+                            <div class="form-group"><label>{{text_db_row}}</label><select  name="eimport_external_rows[]" class="form-control form-control-sm">
+        
+                            {% for row in rows %}
+                                <option value="{{row}}" {{excel_data.eimport_external_rows[ek] == row ? 'selected="selected"' : ''}} >{{row}} {{text_row}}</option>
+                            {% endfor %}
+        
+                            </select></div>
+                        </div>
+
+                        {% endfor %}
+                        
+
+
+                    </div>
+
+                </div>
             </div>
 
 
@@ -456,3 +483,25 @@
 </div>
 
 {{ footer }}
+
+<script>
+ $('.btn-addRow').on('click', function() {
+
+    var template = '<div class="col-xs-12 col-md-4 external_input"><a onclick="$(this).parent().remove(); return false;">{{text_remove}}</a>';
+     
+    template += '<div class="form-group"><label>{{text_db_col}}</label><input type="text" name="eimport_external_names[]" class="form-control form-control-sm" /></div>';
+    template += '<div class="form-group"><label>{{text_db_row}}</label><select  name="eimport_external_rows[]" class="form-control form-control-sm">';
+    
+    {% for row in rows %}
+        template += '<option value="{{row}}">{{row}} {{text_row}}</option>';
+    {% endfor %}
+    
+    template += '</select></div>';
+
+     
+    template += '</div>';
+
+     $('#external-storage').append(template);
+
+ });
+</script>

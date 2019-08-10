@@ -3,7 +3,7 @@ $_['heading_title'] = 'Import Excel';
 $_['text_tab_pinfo']= 'General Settings';
 $_['text_tab_pattr']= 'Product Attr';
 $_['text_tab_adesc']= 'Auto Description';
-$_['text_tab_other']= 'Other Settings';
+$_['text_tab_other']= 'Other';
 $_['text_row']      = 'Row';
 $_['form_model']    = 'Model';
 $_['form_name']     = 'Name';
@@ -18,7 +18,7 @@ $_['form_category']       = 'Main Category';
 $_['form_category_sub']   = 'Sub Category';
 $_['form_category_sub2']  = 'Sub Category 2';
 $_['form_price']   = 'Price';
-$_['text_prices']  = 'Price / Discount Settings';
+$_['text_prices']  = 'Discount Settings';
 $_['form_discount_group']  = 'Discount Value Row';
 $_['form_product_prefix'] = 'Product Name Prefix';
 $_['form_product_sufix'] = 'Product Name Sufix';
@@ -56,5 +56,8 @@ $_['form_seo_metod']     = 'Seo Metod';
 $_['text_seo_auto']      = 'Auto Create';
 $_['text_seo_row']       = 'Use Source';
 $_['form_seo_source']    = 'Seo Row';
-
+$_['text_tab_external']  = 'External';
+$_['text_remove']        = 'Remove';
+$_['text_db_col']        = 'DB Column Name';
+$_['text_db_row']        = 'Excel Row';
 ?>

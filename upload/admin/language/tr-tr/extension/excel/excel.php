@@ -3,7 +3,7 @@ $_['heading_title'] = 'Import Excel';
 $_['text_tab_pinfo']= 'Genel Ayarlar';
 $_['text_tab_pattr']= 'Ürün Seçenekleri';
 $_['text_tab_adesc']= 'Açıklamalar';
-$_['text_tab_other']= 'Diğer Ayarlar';
+$_['text_tab_other']= 'Diğer';
 $_['text_row']      = 'Sutun';
 $_['form_model']    = 'Model';
 $_['form_name']     = 'Ürün Adı';
@@ -18,7 +18,7 @@ $_['form_category']   = 'Ana Kategori';
 $_['form_category_sub']    = 'Alt Kategori';
 $_['form_category_sub2']   = 'Alt Kategori 2';
 $_['form_price']   = 'Fiyat';
-$_['text_prices']  = 'Fiyat / İndirim';
+$_['text_prices']  = 'İndirim';
 $_['form_discount_group']  = 'İndirim Sutunu';
 $_['form_product_prefix'] = 'Ürün Adı Ön Ek';
 $_['form_product_sufix'] = 'Ürün Adı Son Ek';
@@ -56,5 +56,9 @@ $_['form_seo_metod']     = 'Seo Metodu';
 $_['text_seo_auto']      = 'Otomatik Oluştur';
 $_['text_seo_row']       = 'Excel Kullan';
 $_['form_seo_source']    = 'Seo Excel Kaynağı';
+$_['text_tab_external']  = 'Ekstra Sutun';
+$_['text_remove']        = 'Sil';
+$_['text_db_col']        = 'V.T Sutun Adı';
+$_['text_db_row']        = 'Excel Sutunu';
 
 ?>
