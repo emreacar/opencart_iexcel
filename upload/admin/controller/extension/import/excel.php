@@ -53,7 +53,7 @@ class ControllerExtensionImportExcel extends Controller {
 
 
 		echo 'Please Wait until redirect to <a href="'.$link.'">next step</a>';
-		//echo '<script>window.location="'.$link.'";</script>';
+		echo '<script>window.location="'.$link.'";</script>';
 	}
 
     protected function getForm() {

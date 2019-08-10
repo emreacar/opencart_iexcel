@@ -97,7 +97,7 @@
                 forEach($matches as $match) {
                     $target_row = isset($match[1]) ? $match[1] : '';
 
-                    if( $target_row != '' && isset($import_data[$model][$target_row]) ) { $description = str_replace("{".$match."}", $match_source, $description ); }
+                    if( $target_row != '' && isset($import_data[$model][$target_row]) ) { $description = str_replace("{".$match[1]."}", $import_data[$model][$target_row], $description ); }
                 }
             }
 
@@ -511,12 +511,12 @@
     private function getProductImages($model) {
         $images = [];
 
-        $find   = glob(DIR_IMAGE."*/$model*");
+        $find   = glob("../image/{,*/,*/*/,*/*/*/}$model*.jpg", GLOB_BRACE);
 
         foreach($find as $sort_order => $image) {
             if( !is_dir($image) ) {
                 $images[] = [
-                    'image'      => str_replace(DIR_IMAGE, '', $image),
+                    'image'      => str_replace('../image/', '', $image),
                     'sort_order' => $sort_order
                 ];
             }
