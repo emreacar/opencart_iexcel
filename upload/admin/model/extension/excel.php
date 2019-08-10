@@ -82,12 +82,16 @@
 
             }
 
-            /**
-             * TODO CHANGE ROW PARAMETER FOR DESCRIPTION
-            **/
+            $re = '/{([A-Z]+)}/m';
+            preg_match_all($re, $description, $matches, PREG_SET_ORDER, 0);
+            
+            if(!empty($matches)) {
+                forEach($matches as $match) {
+                    $target_row = isset($match[1]) ? $match[1] : '';
 
-
-            /** product description */
+                    if( $target_row != '' && isset($import_data[$model][$target_row]) ) { $description = str_replace("{".$match."}", $match_source, $description ); }
+                }
+            }
 
             /** product name */
             $name        = '';
