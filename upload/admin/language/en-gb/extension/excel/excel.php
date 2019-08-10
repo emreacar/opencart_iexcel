@@ -54,5 +54,9 @@ $_['error_upload']       = 'File upload error';
 $_['import_success']     = 'Products has been imported successfully';
 $_['ierr_no_model']      = 'Row have not model code';
 $_['form_update_exist']  = 'Update Alread Added Products';
+$_['form_seo_metod']     = 'Seo Metod';
+$_['text_seo_auto']      = 'Auto Create';
+$_['text_seo_row']       = 'Use Source';
+$_['form_seo_source']    = 'Seo Row';
 
 ?>

@@ -352,6 +352,32 @@
                                 </div>
                             </div>
 
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>{{form_seo_metod}}</label>
+                                        <select name="eimport_seoMetod" class="form-control form-control-sm">
+                                            <option value="0" {{excel_data.eimport_seoMetod == '0' ? 'selected="selected"' : ''}}>{{text_disabled}}</option>
+                                            <option value="1" {{excel_data.eimport_seoMetod == '1' ? 'selected="selected"' : ''}}>{{text_seo_auto}}</option>
+                                            <option value="2" {{excel_data.eimport_seoMetod == '2' ? 'selected="selected"' : ''}}>{{text_seo_row}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label>{{form_seo_source}}</label>
+                                        <select name="eimport_seoRow" class="form-control form-control-sm">
+                                        <option value="00">{{text_select}}</option>
+                                            {% for row in rows %}
+                                                <option value="{{row}}" {{excel_data.eimport_seoRow == row ? 'selected="selected"' : ''}}>{{row}} {{text_row}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
 

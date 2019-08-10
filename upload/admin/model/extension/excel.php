@@ -324,9 +324,28 @@
                     }
 
                 }
-
-
             }
+
+            $seo_url = [];
+
+            $seo_metod = $config['eimport_seoMetod'];
+            $seo_row   = $config['eimport_seoRow'];
+
+            if($seo_metod == '1') {
+                $seo_url = [
+                    $this->stores[0] => [
+                        $this->defaultLang => $this->createSeo($model.' '.$product_description[$this->defaultLang]['name'])
+                    ]
+                ];
+            }elseif($seo_metod == '2' && "" != trim($import_data[$model][$seo_row]) ) {
+                $seo_url = [
+                    $this->stores[0] => [
+                        $this->defaultLang => $this->createSeo($import_data[$model][$seo_row])
+                    ]
+                ];
+            }
+
+            
 
             /** product categories */
             $product = [
@@ -364,11 +383,7 @@
                 'product_option'    => $product_options,
                 'product_image'     => $product_images,
                 'product_category'  => $product_categories,
-                'product_seo_url'   => [
-                    $this->stores[0] => [
-                        $this->defaultLang => $this->createSeo($product_description[$this->defaultLang]['name'])
-                    ]
-                ]
+                'product_seo_url'   => $seo_url
             ];
             $product_id = $this->isProductSaved($model);
             if($product_id == 0) $this->saveProduct($product);
