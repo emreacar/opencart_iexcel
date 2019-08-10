@@ -47,7 +47,7 @@
             }elseif( "" != trim($model) ) {
                 $import_data[$model]['options'][] = $iv;
             }else{
-                $status['logs'][] = $ik.$this->language->get('ierr_no_model');
+                $this->session->data['error'][] = $ik.$this->language->get('ierr_no_model');
             }
         }
         /** get products option rows in some array */
@@ -418,11 +418,11 @@
             if($product_id == 0) $product_id = $this->saveProduct($product);
             elseif(isset($config['eimport_update_exist']) && '1' == $config['eimport_update_exist']) $product_id = $this->updateProduct($product, $product_id);
             else {
-                $status['logs'][] = $model.' yükle / güncelle seçeneği yok';
+                $this->session->data['error'][] = $model.' yükle / güncelle seçeneği yok';
             }
 
             if($product_id == 0) {
-                $status['logs'][] = $model.' '.$this->language->get('err_product');
+                $this->session->data['error'][] = $model.' '.$this->language->get('err_product');
             }
 
             $current++;
