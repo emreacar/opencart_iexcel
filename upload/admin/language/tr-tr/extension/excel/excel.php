@@ -52,6 +52,8 @@ $_['error_upload']       = 'Dosya Yüklenemedi !';
 $_['import_success']     = 'Ürünler başarıyla eklendi.';
 $_['ierr_no_model']      = 'Ürüne ait model kodu yok.';
 $_['form_update_exist']  = 'EKli olan ürünleri güncelle';
+$_['form_desi_compare']  = 'Desi/Ağırlık Karşılaştır';
+$_['form_additional']    = 'Benzer Ürünler (ÜrünID1, ÜrünID2,...)';
 $_['form_seo_metod']     = 'Seo Metodu';
 $_['text_seo_auto']      = 'Otomatik Oluştur';
 $_['text_seo_row']       = 'Excel Kullan';
@@ -62,4 +64,6 @@ $_['text_remove']        = 'Sil';
 $_['text_db_col']        = 'V.T Sutun Adı';
 $_['text_db_row']        = 'Excel Sutunu';
 $_['err_product']        = 'Ürün Eklenemedi';
+$_['form_tags']          = 'Ürün Etiketleri';
+$_['form_eimport_firstRow'] = 'Başlık Satırı Var';
 ?>

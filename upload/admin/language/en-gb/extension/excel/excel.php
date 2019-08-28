@@ -52,6 +52,8 @@ $_['error_upload']       = 'File upload error';
 $_['import_success']     = 'Products has been imported successfully';
 $_['ierr_no_model']      = 'Row have not model code';
 $_['form_update_exist']  = 'Update Alread Added Products';
+$_['form_desi_compare']  = 'Compare with desi and weight';
+$_['form_additional']    = 'Additional Product (ID1, ID2,...)';
 $_['form_seo_metod']     = 'Seo Metod';
 $_['text_seo_auto']      = 'Auto Create';
 $_['text_seo_row']       = 'Use Source';
@@ -62,4 +64,7 @@ $_['text_remove']        = 'Remove';
 $_['text_db_col']        = 'DB Column Name';
 $_['text_db_row']        = 'Excel Row';
 $_['err_product']        = 'Product Save Error';
+$_['form_tags']          = 'Product Tags';
+$_['form_eimport_firstRow'] = 'Ignore First Row';
+
 ?>

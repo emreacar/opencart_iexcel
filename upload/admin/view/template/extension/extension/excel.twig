@@ -173,13 +173,31 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Desi</label>
+                            <select name="eimport_desi" class="form-control form-control-sm">
+                            <option value="00">{{text_select}}</option>
+                                {% for row in rows %}
+                                    <option value="{{row}}" {{excel_data.eimport_desi == row ? 'selected="selected"' : ''}}>{{row}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{form_additional}}</label>
+                            <select name="eimport_related" class="form-control form-control-sm">
+                                <option value="00">{{text_select}}</option>
+                                {% for row in rows %}
+                                    <option value="{{row}}" {{excel_data.eimport_related == row ? 'selected="selected"' : ''}}>{{row}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label>{{form_weight_class}}</label>
                             <select name="eimport_weight_class" class="form-control form-control-sm">
                                 {% for c in weight_classes %}<option value="{{c.weight_class_id}}" {{excel_data.eimport_weight_class == c.weight_class_id ? 'selected="selected"' : ''}}>{{c.title}} ({{c.unit}})</option>{% endfor %}
                             </select>
                         </div>
-
-
                     </div>
                 </div>
                 
@@ -353,6 +371,19 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label>{{form_tags}}</label>
+                                        <select name="eimport_metaTags" class="form-control form-control-sm">
+                                        <option value="00">{{text_select}}</option>
+                                            {% for row in rows %}
+                                                <option value="{{row}}" {{excel_data.eimport_metaTags == row ? 'selected="selected"' : ''}}>{{row}} {{text_row}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
@@ -418,6 +449,18 @@
                             <div class="checkbox">
                                 <label>
                                     <input name="eimport_update_exist" value="1" {{excel_data.eimport_update_exist == '1' ? 'checked="checked"' : ''}} type="checkbox"> {{form_update_exist}}
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input name="eimport_desi_compare" value="1" {{excel_data.eimport_desi_compare == '1' ? 'checked="checked"' : ''}} type="checkbox"> {{form_desi_compare}}
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input name="eimport_firstRow" value="1" {{excel_data.eimport_firstRow == '1' ? 'checked="checked"' : ''}} type="checkbox"> {{form_eimport_firstRow}}
                                 </label>
                             </div>
 

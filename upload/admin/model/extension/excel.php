@@ -38,17 +38,23 @@
         /** get products option rows in some array */
         $import_data = [];
         $imported_data = [];
+        $firstRow = isset($config['eimport_firstRow']) && 1 == $config['eimport_firstRow'] ? 1 : 0;
         forEach($import as $ik => $iv) {
-            $model = $iv[$config['eimport_model']];
-            if( !in_array($model, $imported_data) && "" != trim($model) ) {
-                $iv['options'] = [];
-                $import_data[$model] = $iv;
-                $imported_data[] = $model;
-            }elseif( "" != trim($model) ) {
-                $import_data[$model]['options'][] = $iv;
-            }else{
-                $this->session->data['error'][] = $ik.$this->language->get('ierr_no_model');
+            $allow = $ik == 1 && $firstRow == 1 ? false : true;
+
+            if($allow) {
+                $model = $iv[$config['eimport_model']];
+                if( !in_array($model, $imported_data) && "" != trim($model) ) {
+                    $iv['options'] = [];
+                    $import_data[$model] = $iv;
+                    $imported_data[] = $model;
+                }elseif( "" != trim($model) ) {
+                    $import_data[$model]['options'][] = $iv;
+                }else{
+                    $this->session->data['error'][] = $ik.$this->language->get('ierr_no_model');
+                }
             }
+            
         }
         /** get products option rows in some array */
 
@@ -139,12 +145,14 @@
             }
 
 
+            $tags = isset($config['eimport_metaTags']) && "00" != $config['eimport_metaTags'] ? $import_data[$model][$config['eimport_metaTags']] : '';
             $this->defaultLang = (int)$this->config->get('config_language_id');
+
             $product_description[$this->defaultLang] = [
                 'name' => $name,
                 'description' => $description,
                 'meta_description' => $meta_desc,
-                'tag' => '',
+                'tag' => $tags,
                 'meta_title' => $name,
                 'meta_keyword' => ''
             ];
@@ -177,7 +185,6 @@
                 if($discount != "00") {
                     $product_discount[] = [
                         'customer_group_id' => $customer_group,
-                        'quantity'          => (int) $import_data[$model][$config['eimport_qty']],
                         'priority'          => '0',
                         'price'             => $import_data[$model][$discount],
                         'date_start'        => date("Y-m-d"),
@@ -353,7 +360,27 @@
                 ];
             }
 
-            
+            $weight =$config['eimport_weight'] != "00" ? $import_data[$model][$config['eimport_weight']] : '';
+            $desi = isset($config['eimport_desi']) && "00" != $config['eimport_desi'] ? trim($import_data[$model][$config['eimport_desi']]) : '';
+            if( isset($config['eimport_desi_compare']) && 1 == $config['eimport_desi_compare'] && $desi != '' && $weight != '' && $desi > $weight ) $weight = $desi;
+            $relateds = [];
+
+            $relatedsRow = isset($config['eimport_related']) ? $config['eimport_related'] : "00";
+
+            if($relatedsRow != "00") {
+                $relatedSource = $import_data[$model][$relatedsRow];
+
+                if( "" != trim($relatedSource) ) {
+
+                    $relatedSource = explode(',', $relatedSource);
+
+                    forEach($relatedSource as $rsId) {
+                        if( 0 < (int) $rsId ) $relateds[] = (int) $rsId;
+                    }
+
+                }
+
+            }
 
             /** product categories */
             $product = [
@@ -374,7 +401,7 @@
                 'shipping' => $config['eimport_reqShipping'],
                 'price'    => $config['eimport_price'] != "00" ? $import_data[$model][$config['eimport_price']] : '0',
                 'points'   => 0,
-                'weight'   => $config['eimport_weight'] != "00" ? $import_data[$model][$config['eimport_weight']] : '',
+                'weight'   => $weight,
                 'weight_class_id' => $config['eimport_weight_class'],
                 'length'  => $config['eimport_dimentionL'] != "00" ? $import_data[$model][$config['eimport_dimentionL']] : '',
                 'width'   => $config['eimport_dimentionW'] != "00" ? $import_data[$model][$config['eimport_dimentionW']] : '',
@@ -387,11 +414,12 @@
                 'product_description' => $product_description,
                 'product_store' => $this->stores,
                 'product_attribute' => $product_attributes,
-                'product_discount'  => $product_discount,
+                'product_special'  => $product_discount,
                 'product_option'    => $product_options,
                 'product_image'     => $product_images,
                 'product_category'  => $product_categories,
-                'product_seo_url'   => $seo_url
+                'product_seo_url'   => $seo_url,
+                'product_related'   => $relateds
             ];
 
 
@@ -474,7 +502,7 @@
 
 
 
-        $return = trim(preg_replace('/-{1,}/', '-', preg_replace('/[^a-zA-Z0-9\s]/', '', str_replace($utf_find, $utf_replace, mb_strtolower($input) ) ) ) );
+        $return = trim(preg_replace('/-{1,}/', '-', preg_replace('/[^a-zA-Z0-9\-\s]/', '', str_replace($utf_find, $utf_replace, mb_strtolower($input) ) ) ) );
 
         //remove words, if not helpful to seo
         if($remove_words) { $return = remove_words($return, $replace, $words_array); }
@@ -511,12 +539,12 @@
     private function getProductImages($model) {
         $images = [];
 
-        $find   = glob("../image/{,*/,*/*/,*/*/*/}$model*.jpg", GLOB_BRACE);
+        $find   = glob("../image/catalog/{,*/,*/*/,*/*/*/}$model*.jpg", GLOB_BRACE);
 
         foreach($find as $sort_order => $image) {
             if( !is_dir($image) ) {
                 $images[] = [
-                    'image'      => str_replace('../image/', '', $image),
+                    'image'      => str_replace('../image/catalog/', '', $image),
                     'sort_order' => $sort_order
                 ];
             }
