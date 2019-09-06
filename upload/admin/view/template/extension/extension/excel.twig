@@ -258,7 +258,7 @@
 
                     <div class="form-gruop">
                         <label>{{form_defaultDesc}}</label>
-                        <textarea name="eimport_defaultDesc" class="form-control form-control-sm">{{excel_data.eimport_defaultDesc}}</textarea>
+                        <textarea name="eimport_defaultDesc" data-toggle="summernote" data-lang class="form-control form-control-sm">{{excel_data.eimport_defaultDesc}}</textarea>
                     </div>
 
                     <div class="text-muted">{{text_dd_info}}</div>
@@ -525,6 +525,13 @@
     </div>
     </div>
 </div>
+
+
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet"/>
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+
 
 {{ footer }}
 

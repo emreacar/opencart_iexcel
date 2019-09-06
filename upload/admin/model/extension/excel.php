@@ -141,7 +141,7 @@
             }
 
             if( $meta_metod == '2' ) {
-                $meta_desc = mb_substr(strip_tags($description), 0, 150);
+                $meta_desc = mb_substr(strip_tags($description), 0, 160);
             }
 
 
@@ -563,7 +563,7 @@
         foreach($find as $sort_order => $image) {
             if( !is_dir($image) ) {
                 $images[] = [
-                    'image'      => str_replace('../image/catalog/', '', $image),
+                    'image'      => str_replace('../image/', '', $image),
                     'sort_order' => $sort_order
                 ];
             }
