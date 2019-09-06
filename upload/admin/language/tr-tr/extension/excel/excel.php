@@ -17,6 +17,7 @@ $_['form_qty']        = 'Stok Adet';
 $_['form_category']   = 'Ana Kategori';
 $_['form_category_sub']    = 'Alt Kategori';
 $_['form_category_sub2']   = 'Alt Kategori 2';
+$_['text_seo_image']    = 'Resim Adını Kullan';
 $_['form_price']   = 'Fiyat';
 $_['text_prices']  = 'İndirim';
 $_['form_discount_group']  = 'İndirim Sutunu';

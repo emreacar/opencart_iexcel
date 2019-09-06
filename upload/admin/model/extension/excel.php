@@ -187,8 +187,8 @@
                         'customer_group_id' => $customer_group,
                         'priority'          => '0',
                         'price'             => $import_data[$model][$discount],
-                        'date_start'        => date("Y-m-d"),
-                        'date_end'          => date("2024-m-d")
+                        'date_start'        => '',
+                        'date_end'          => ''
                     ];
                 }
                 
@@ -358,6 +358,25 @@
                         $this->defaultLang => $this->createSeo($import_data[$model][$seo_row])
                     ]
                 ];
+            }elseif( $seo_metod == '3' ) {
+                if($product_image != "") {
+                    $parseImageName = explode('/', $product_image);
+                    $parseImageName = end($parseImageName);
+                    $parseImageName = explode('.', $parseImageName);
+
+                    $seo_url = [
+                        $this->stores[0] => [
+                            $this->defaultLang => $this->createSeo($parseImageName[0])
+                        ]
+                    ];
+                }else{
+                    $seo_url = [
+                        $this->stores[0] => [
+                            $this->defaultLang => $this->createSeo($model.' '.$product_description[$this->defaultLang]['name'])
+                        ]
+                    ];
+                }
+                
             }
 
             $weight =$config['eimport_weight'] != "00" ? $import_data[$model][$config['eimport_weight']] : '';

@@ -58,6 +58,7 @@ $_['form_seo_metod']     = 'Seo Metod';
 $_['text_seo_auto']      = 'Auto Create';
 $_['text_seo_row']       = 'Use Source';
 $_['form_seo_source']    = 'Seo Row';
+$_['text_seo_image']    = 'From Image Name';
 $_['text_tab_external']  = 'External';
 $_['text_add']           = 'Add Field';
 $_['text_remove']        = 'Remove';
